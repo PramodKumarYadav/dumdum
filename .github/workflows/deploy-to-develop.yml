@@ -3,8 +3,6 @@ name: Trigger tests
 on:
   push:
     branches: ["develop"]  # Every time code merges to main branch, build application.
-  push:
-    branches: ["main"]  # We are also adding main trigger here just to test this flow. In real production, above trigger is all you need.
   workflow_dispatch:
 
 jobs:
@@ -21,17 +19,17 @@ jobs:
       # Dummy steps just to demonstrate the concept
       - name: setup infra
         run: echo infrastructure setup. 
-	  
+	
       - name: build application
         run: echo app build. 
-		
+	
       - name: deploy application
         run: echo app deployed. 
   
   notify:
-	runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     name: Notify test repositories that deployment is completed on develop env and thus they can run tests specific to this service.
-	needs: deploy-develop-env
+    needs: deploy-develop-env
     strategy:
       matrix:
        # repos: [ 'PramodKumarYadav/zero',  'PramodKumarYadav/api-tests',  'PramodKumarYadav/mobile-tests', 'PramodKumarYadav/browser-tests']
@@ -43,4 +41,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
           repository: ${{ matrix.repos }}
           event-type: deployment-completed-notification-event
-		  client-payload: '{ "github": ${{ toJson(github) }},"TEST_ENV": "DEVELOP" , "TAG": "${{ github.event.repository.name }}"}'
+	  client-payload: '{ "github": ${{ toJson(github) }},"TEST_ENV": "DEVELOP" , "TAG": "${{ github.event.repository.name }}"}'
