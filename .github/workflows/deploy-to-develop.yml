@@ -2,7 +2,7 @@ name: Trigger tests
 
 on:
   push:
-    branches: ["develop"]  # Every time code merges to main branch, build application.
+    branches: ["main"]  # Every time code merges to main branch, build application.
   workflow_dispatch:
 
 jobs:
