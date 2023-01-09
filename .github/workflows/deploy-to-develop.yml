@@ -25,7 +25,7 @@ jobs:
       - name: build application
         run: echo app build. 
 		
-	  - name: deploy application
+      - name: deploy application
         run: echo app deployed. 
   
   notify:
