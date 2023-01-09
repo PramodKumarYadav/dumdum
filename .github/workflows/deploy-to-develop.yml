@@ -19,10 +19,10 @@ jobs:
       # Dummy steps just to demonstrate the concept
       - name: setup infra
         run: echo infrastructure setup. 
-	
+      
       - name: build application
         run: echo app build. 
-	
+      
       - name: deploy application
         run: echo app deployed. 
   
@@ -41,4 +41,5 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
           repository: ${{ matrix.repos }}
           event-type: deployment-completed-notification-event
-	  client-payload: '{ "github": ${{ toJson(github) }},"TEST_ENV": "DEVELOP" , "TAG": "${{ github.event.repository.name }}"}'
+          client-payload: '{ "github": ${{ toJson(github) }},"TEST_ENV": "DEVELOP" , "TAG": "${{ github.event.repository.name }}"}'
+
