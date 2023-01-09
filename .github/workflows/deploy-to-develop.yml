@@ -18,13 +18,13 @@ jobs:
 
       # Dummy steps just to demonstrate the concept
       - name: setup infra
-        run: echo infrastructure setup. 
+        run: echo "infrastructure setup" 
       
       - name: build application
-        run: echo app build. 
+        run: echo "app build"
       
       - name: deploy application
-        run: echo app deployed. 
+        run: echo "app deployed" 
   
   notify:
     runs-on: ubuntu-latest
